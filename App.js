@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, TextInput, Button, Alert } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 // import console = require('console');
 
 const codeToTest = "#include <iostream> int main(void) { std::cout << \"Holy shit.\" << std::endl; }";
@@ -66,6 +67,10 @@ export default class App extends Component {
       .catch((err) => console.log(err))
   }
 
+  takePicture() {
+    console.log('Taking Picture');
+  }
+
   render () {
     
       return (
@@ -73,6 +78,14 @@ export default class App extends Component {
         <View style={styles.container}>
           {/* <Text>{this.state.response}</Text>   */}
           {console.log(this.state.response)}
+
+          <Icon.Button 
+            name="camera" 
+            backgroundColor="#841584"
+            style={{alignItems: 'center',}}
+            onPress={() => this.takePicture()}
+          />
+
           <TextInput multiline
             style={{ width: 300, height:600, borderColor: 'gray', borderWidth: 1 }}
             onChangeText={(text) => this.setState({ response: text })}
