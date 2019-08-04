@@ -30,8 +30,7 @@ export default class App extends Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          str: codeToTest,
-          other: 'potato',
+          str: "#include <iostream> int main(void) { std::cout << \"Holy shit.\" << std::endl; return 0;}",
         }),
       }).catch((error) => {
         console.error(error);
