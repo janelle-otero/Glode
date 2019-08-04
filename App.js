@@ -27,8 +27,8 @@ export default class App extends Component {
           str: '#include <iostream> \nint main(void) {std:: cout << "Holy shit." << std:: endl; return 0; }'
         }),
       }).then((res) => res.json())
-        .then((data) => {console.log('data', data.output); this.setState({response:data.output})})
-        .catch((err) => console.log('You errored out :('))
+        .then((data) => {console.log('data', data.ParsedResults[0].ParsedText);  })
+        .catch((err) => console.log(err))
   } 
 
   render () {

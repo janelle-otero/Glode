@@ -32,7 +32,7 @@ app.post("/api/string", function(req, res) {
     .then(function (parsedResult) {
       console.log('parsedText: \n', parsedResult.parsedText);
       console.log('ocrParsedResult: \n', parsedResult.ocrParsedResult);
-      res.send(parsedResult.parsedText);
+      res.send(parsedResult.ocrParsedResult);  
     }).catch(function (err) {
       console.log('ERROR:', err);
     });
