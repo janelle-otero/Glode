@@ -30,7 +30,8 @@ export default class App extends Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          str: "#include <iostream> int main(void) { std::cout << \"Holy shit.\" << std::endl; return 0;}",
+          // str: "#include <iostream> int main(void) { std::cout << \"Holy shit.\" << std::endl; return 0;}",
+          str: '#include <iostream> \nint main(void) {std:: cout << "Holy shit." << std:: endl; return 0; }'
         }),
       }).catch((error) => {
         console.error(error);
@@ -62,7 +63,7 @@ export default class App extends Component {
     return (
       // <div></div>
       <View style={styles.container}>
-        <Text>sup</Text>
+        <Text>alo</Text>
         
         
       </View>
