@@ -11,16 +11,9 @@ export default class App extends Component {
     this.state = {
       thisLoading: true,
       dataSource: null,
-      response: 'loading',
-    }
+      response: 'loaaaaading',
+    } 
   }
-
-  // componentDidMount() {
-
-  //   return fetch ('/api/string')
-
-  // }
-
 
   componentDidMount() {
       return fetch('http://192.168.254.196:5000/api/string', {
@@ -35,30 +28,17 @@ export default class App extends Component {
         }),
       }).then((res) => res.json())
         .then((data) => {console.log('data',data.output); this.setState({response:data.output})})
-        .catch((err) => console.log(err))
+        .catch((err) => console.log('You errored out :('))
   } 
 
   render () {
-    if (this.state.response === 'loading')
-    {
-      return (
-        // <div></div>
-        <View style={styles.container}>
-          <Text>danggg</Text>
-        </View>
-      );
-      
-    }
-    else 
-    {
+    
       return (
         // <div></div>
         <View style={styles.container}>
           <Text>{this.state.response}</Text>         
         </View>
       );
-      
-    }
   }
 }
 
