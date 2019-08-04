@@ -11,7 +11,7 @@ export default class App extends Component {
     this.state = {
       thisLoading: true,
       dataSource: null,
-
+      response: 'loading',
     }
   }
 
@@ -33,41 +33,32 @@ export default class App extends Component {
           // str: "#include <iostream> int main(void) { std::cout << \"Holy shit.\" << std::endl; return 0;}",
           str: '#include <iostream> \nint main(void) {std:: cout << "Holy shit." << std:: endl; return 0; }'
         }),
-      }).catch((error) => {
-        console.error(error);
-      });
+      }).then((res) => res.json())
+        .then((data) => {console.log('data',data.output); this.setState({response:data.output})})
+        .catch((err) => console.log(err))
   } 
-    // return fetch('192.168.254.196:5000/', {
-
-    // })
-
-  // componentDidMount() {
-  //   return fetch('/api/string')
-  //     .then((response) => response.json())
-  //     .then((responseHiyaJson) => {
-
-  //       this.setState({
-  //         // isLoading: false,
-  //         // dataSource: responseJson.movies,
-  //       }, function () {
-
-  //       });
-
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }
 
   render () {
-    return (
-      // <div></div>
-      <View style={styles.container}>
-        <Text>alo</Text>
-        
-        
-      </View>
-    );
+    if (this.state.response === 'loading')
+    {
+      return (
+        // <div></div>
+        <View style={styles.container}>
+          <Text>danggg</Text>
+        </View>
+      );
+      
+    }
+    else 
+    {
+      return (
+        // <div></div>
+        <View style={styles.container}>
+          <Text>{this.state.response}</Text>         
+        </View>
+      );
+      
+    }
   }
 }
 

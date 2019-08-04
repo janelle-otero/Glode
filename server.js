@@ -32,7 +32,7 @@ app.post("/api/string", function(req, res) {
       console.log('error:', error);
       console.log('statusCode:', response && response.statusCode);
       console.log('body:', body);
-      res.send(body.output);
+      res.send(body);
     });
 
 });
