@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, TextInput, Button, Alert } from 'react-native';
 // import console = require('console');
 
 const codeToTest = "#include <iostream> int main(void) { std::cout << \"Holy shit.\" << std::endl; }";
@@ -12,6 +12,7 @@ export default class App extends Component {
       thisLoading: true,
       dataSource: null,
       response: 'loaaaaading',
+      outputFromCode: '-',
     } 
   }
 
@@ -41,7 +42,28 @@ export default class App extends Component {
   } 
 
   handleClick() {
-    console.log("Button clicked");
+    return fetch('http://192.168.254.196:5000/api/getresults', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        // str: "#include <iostream> int main(void) { std::cout << \"Holy shit.\" << std::endl; return 0;}",
+        str: this.state.response,
+      }),
+    }).then((res) => res.json())
+      // .then((data) => {console.log('data', data.ParsedResults[0].ParsedText);  })
+      .then((data) => {
+        ret = this.confirmData(data);
+        console.log(data.output);
+    
+        Alert.alert("Your Glode Output: ", data.output);
+      
+        // this.setState({ outputFromCode: data.ParsedResults[0].ParsedText });
+        // console.log(this.state.outputFromCode);
+      })
+      .catch((err) => console.log(err))
   }
 
   render () {
