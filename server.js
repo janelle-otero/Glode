@@ -19,13 +19,13 @@ app.post("/api/string", function(req, res) {
 
   var options = {
     apikey: '119aa8cf3288957',
-    language: 'eng', // Português
-    imageFormat: 'image/png', // Image Type (Only png ou gif is acceptable at the moment i wrote this)
+    language: 'eng',
+    imageFormat: 'image/jpg', 
     isOverlayRequired: true
   };
 
   // Image file to upload
-  const imageFilePath = "input.png";
+  const imageFilePath = req.body.str; 
 
   // Run and wait the result
   ocrSpaceApi.parseImageFromLocalFile(imageFilePath, options)
@@ -36,6 +36,7 @@ app.post("/api/string", function(req, res) {
     }).catch(function (err) {
       console.log('ERROR:', err);
     });
+  // res.send('hello');
 
  
   // var request = require('request');
